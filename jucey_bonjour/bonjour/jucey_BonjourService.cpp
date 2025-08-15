@@ -246,7 +246,7 @@ namespace jucey
                 serviceToResolve->pimpl->txtRecord.copyFrom (txtLen, txtRecord);
                 serviceToResolve->pimpl->resolveAsyncCallback (*serviceToResolve,
                                                                hosttarget,
-                                                               port,
+                                                               ntohs(port),
                                                                bonjourResult (errorCode));
             }
         }
@@ -472,7 +472,7 @@ namespace jucey
                                                               type.toUTF8(),
                                                               domain.isEmpty() ? nullptr : domain.toUTF8(),
                                                               nullptr,
-                                                              portToRegisterServiceOn,
+                                                              htons(portToRegisterServiceOn),
                                                               pimpl->txtRecord.getLength(),
                                                               pimpl->txtRecord.getBytes(),
                                                               &Pimpl::registerReply,
@@ -524,3 +524,4 @@ namespace jucey
 }
 
 #include "jucey_BonjourServiceTests.cpp"
+
