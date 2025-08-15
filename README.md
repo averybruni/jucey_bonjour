@@ -10,7 +10,7 @@ udpSocket.bindToPort(0);
 const auto onServiceRegistered = [](const jucey::BonjourService& service,
                                     const juce::Result& result)
 {
-    if (result.wasOK())
+    if (result.wasOk())
     {
         std::cout << "Registered service:" << std::endl;
         std::cout << service.getType() << std::endl;
@@ -31,7 +31,7 @@ const auto onServiceDiscovered = [](const jucey::BonjourService& service,
                                     bool isMoreComing,
                                     const juce::Result& result)
 {
-    if (result.wasOK())
+    if (result.wasOk())
     {
         std::cout << (isAvailable ? "Added service:" : "Removed service:") << std::endl;
         std::cout << service.getType() << std::endl;
@@ -52,12 +52,12 @@ const auto onServiceResolved = [](const jucey::BonjourService& service,
                                   unint16_t port,
                                   const juce::Result& result)
 {
-    if (result.wasOK())
+    if (result.wasOk())
     {
-        std::cout << (isAvailable ? "Added service:" : "Removed service:") << std::endl;
-        std::cout << service.getType() << std::endl;
-        std::cout << service.getName() << std::endl;
-        std::cout << service.getDomain() << std::endl;
+        std::cout << "Resolved Service:" << std::endl;
+        std::cout << "\tHOST: " << hosttarget << std::endl;
+        std::cout << "\tPORT: " << port << std::endl;
+        std::cout << "\t" << service.getName() << "." << service.getType() << "." << service.getDomain() << std::endl;
     }
 };
 
