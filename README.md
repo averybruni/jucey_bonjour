@@ -45,11 +45,11 @@ serviceToRegister.discoverAsync (onServiceRegistered, udpSocket);
 
 ## Resolve a service
 ```cpp
-jucey::BonjourService serviceToResolve {"_type._udp"};
+jucey::BonjourService serviceToResolve {"_type._udp", "My Service", "local"};
 
 const auto onServiceResolved = [](const jucey::BonjourService& service,
-                                  bool isAvailable,
-                                  bool isMoreComing,
+                                  std::string hosttarget,
+                                  unint16_t port,
                                   const juce::Result& result)
 {
     if (result.wasOK())
@@ -61,6 +61,6 @@ const auto onServiceResolved = [](const jucey::BonjourService& service,
     }
 };
 
-serviceToRegister.discoverAsync (onServiceRegistered, udpSocket);
+serviceToRegister.resolveAsync (onServiceRegistered, udpSocket);
 ```
 
